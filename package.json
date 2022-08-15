@@ -1,0 +1,23 @@
+{
+  "name": "editor3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build --base=./ && rsync -av --delete dist/ siev20@ssh.student.bth.se:www/editor"
+  },
+  "devDependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
+    "@tinymce/tinymce-svelte": "^1.0.0",
+    "eslint": "^8.22.0",
+    "eslint-config-eslint": "^7.0.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "svelte": "^3.49.0",
+    "svelte-fa": "^3.0.3",
+    "vite": "^3.0.7"
+  }
+}
