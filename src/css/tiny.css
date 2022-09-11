@@ -11,6 +11,6 @@
   width: 0;
 }
 
-.tox-notification--warning {
-  visibility: collapse;
+.tox-notification--warning, .tox-notifications-container {
+  visibility: hidden;
 }
