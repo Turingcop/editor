@@ -7,24 +7,29 @@ const initDoc: document = { _id: "", title: "", body: "" }
 let currentDocument: document = initDoc
 let currentId = ""
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function newDocument(e: any) {
-  if (e.detail.event.command === "mceNewDocument") {
-    currentDocument = initDoc
-    currentId = ""
-  }
-}
-
 $: console.log(currentDocument)
 
 </script>
 
 <main>
+  <p>*Bug warning: in order to display a document you've previously edited it might be necessary to focus the editor before selecting the document from the menu.</p>
     <Toolbar initDoc={initDoc} bind:currentDocument={currentDocument} bind:currentId={currentId}/>
-    <Editor bind:value={currentDocument.body} on:execcommand={e => newDocument(e)} on:focus={() => {console.log(currentDocument)}} />
+    <Editor bind:value={currentDocument.body} on:execcommand={e => {
+      if (e.detail.event.command === "mceNewDocument") {
+            currentDocument = initDoc
+            currentId = ""
+          }
+    }} />
 </main>
 
-<style>  
+<style>
+
+p {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  font-size: 12px;
+}
 main {
   width: calc(100%/1.5);
   height: 100%;

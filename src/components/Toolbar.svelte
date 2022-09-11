@@ -25,7 +25,6 @@ async function loadDocs(): Promise<void> {
 loadDocs()
 
 function getDoc(id: string): document {
-  console.log("Getting doc")
   return docs.filter(doc => doc._id === id)[0] ?? initDoc
 }
 
@@ -34,14 +33,13 @@ async function saveDocument(id: string, title: string, body: string): Promise<vo
     snackBarWarning.open()
     return
   }
-  const newId = await docsModel.saveDocument({
+  currentId = await docsModel.saveDocument({
     _id: id,
     title,
     body
   })
 
   await loadDocs()
-  currentDocument = getDoc(newId)
 }
 
 $: currentDocument = getDoc(currentId)
