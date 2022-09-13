@@ -1,5 +1,5 @@
 /* global window, fetch */
-export interface document {
+export type document = {
   _id: string,
   title: string,
   body: string
