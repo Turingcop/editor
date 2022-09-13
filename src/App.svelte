@@ -20,11 +20,6 @@ let editor: Editor
             currentDocument = initDoc
           }
     }} />
-    <!-- <button on:click={() => {
-      console.log(editor.$$.ctx[3].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[0])
-      editor.$$.ctx[3].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[0].contentDocument.body.focus()
-
-    }} >Clear</button> -->
 </main>
 
 <style>
