@@ -14,7 +14,6 @@ let editor: Editor
 <main>
     <Toolbar editor={editor} initDoc={initDoc} bind:currentDocument={currentDocument} bind:currentId={currentId}/>
     <Editor bind:this={editor} bind:value={currentDocument.body} on:execcommand={e => {
-      console.log(e)
       if (e.detail.event.command === "mceNewDocument") {
             currentId = ""
             currentDocument = initDoc
