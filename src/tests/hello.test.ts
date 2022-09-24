@@ -41,7 +41,7 @@ test("Selected dokument title replaces label in dropdown", async () => {
 test("Selected dokument title is written in title input", async () => {
   const user = userEvent.setup()
 
-  // await user.click(screen.getByText("Dok1"))
+  await user.click(screen.getByText("Dok1"))
 
   const titleText = screen.getByDisplayValue("Dok1")
 
