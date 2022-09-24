@@ -18,6 +18,5 @@
     "strict": true
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "models/docs.ts"],
-  "exclude": ["node_modules", "build"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "build", "**/**/*.test.ts"]
 }

@@ -9,5 +9,5 @@
         "vite.config.ts",
         // these are the eslint-only inclusions
         ".eslintrc.cjs",
-    ]
+    ],
 }

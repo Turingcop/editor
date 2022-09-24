@@ -50,7 +50,7 @@ $: currentDocument = getDoc(currentId)
 </script>
 
 <div class="toolbar">
-  <Textfield bind:value={currentDocument.title} type="text" label="Document Title" />
+  <Textfield data-testid="hej" bind:value={currentDocument.title} type="text" label="Document Title" ></Textfield>
     <Select label="Select document" bind:value={currentId} >
       {#if docs[0]._id}
         {#each docs as doc}
@@ -60,7 +60,7 @@ $: currentDocument = getDoc(currentId)
     </Select>
   <button on:click={() => saveDocument(currentDocument)}><Fa size="2x" icon={faFloppyDisk} />Spara</button>
 </div>
-<Snackbar bind:this={snackBarWarning}>
+<Snackbar data-testid="warning" bind:this={snackBarWarning}>
   <Label>Please select a title for your document.</Label>
 </Snackbar>
 

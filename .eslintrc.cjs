@@ -21,7 +21,7 @@ module.exports = {
     "key-spacing": [1, { beforeColon: false }],
     "comma-spacing": [1, { before: false, after: true }],
     "object-property-newline": [1, { allowAllPropertiesOnSameLine: true }],
-    "array-element-newline": [1, { multiline: true }],
+    "array-element-newline": [1, "consistent"],
     semi: [1, "never"],
     "space-before-blocks": [1, "always"],
     "arrow-spacing": 1,
@@ -30,7 +30,7 @@ module.exports = {
     "node/no-unpublished-import": 0,
     "comma-dangle": [1, "only-multiline"],
     "node/no-unsupported-features/es-syntax": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
   },
   settings: {
     "svelte3/typescript": true,
