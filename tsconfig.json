@@ -2,6 +2,7 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
+    "outDir": "./dist",
     "useDefineForClassFields": true,
     "module": "ESNext",
     "resolveJsonModule": true,
@@ -18,5 +19,5 @@
     "strict": true
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "models/docs.ts"],
-  "exclude": ["node_modules", "build", "**/**/*.test.ts"]
+  "exclude": ["node_modules", "build", "**/**/*.test.ts", "./dist"]
 }

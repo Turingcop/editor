@@ -3,10 +3,7 @@ import { render, screen } from "@testing-library/svelte"
 import userEvent from "@testing-library/user-event"
 import docsModel from "../../models/docs"
 
-// import { prettyDOM } from "@testing-library/dom"
-// @ts-expect-error because who the hell knows
 import App from "../App.svelte"
-
 
 beforeEach(() => {
   docsModel.getDocs = vi.fn().mockResolvedValue([
@@ -18,7 +15,10 @@ beforeEach(() => {
   render(App)
 })
 
-test("Dokument titles exists", () => {
+test("Dokument titles exists", async () => {
+  const user = userEvent.setup()
+
+  await user.click(screen.getByText("Select document"))
   const title1 = screen.getByText("Dok1")
   const title2 = screen.getByText("Dok2")
   const title3 = screen.getByText("Dok3")
@@ -31,8 +31,8 @@ test("Dokument titles exists", () => {
 test("Selected dokument title replaces label in dropdown", async () => {
   const user = userEvent.setup()
 
+  await user.click(screen.getByText("Select document"))
   await user.click(screen.getByText("Dok1"))
-
   const title1 = screen.getAllByText("Dok1")
 
   expect(title1).toHaveLength(2)
@@ -41,6 +41,7 @@ test("Selected dokument title replaces label in dropdown", async () => {
 test("Selected dokument title is written in title input", async () => {
   const user = userEvent.setup()
 
+  await user.click(screen.getByText("Select document"))
   await user.click(screen.getByText("Dok1"))
 
   const titleText = screen.getByDisplayValue("Dok1")

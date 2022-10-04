@@ -14,3 +14,8 @@
 .tox-notification--warning, .tox-notifications-container {
   visibility: hidden;
 }
+
+.tox-promotion {
+  width: 0 !important;
+  height: 0 !important;
+}

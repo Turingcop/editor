@@ -1,9 +1,13 @@
 /* global window, fetch */
+import type { SnackbarComponentDev } from "@smui/snackbar"
+
 export type document = {
   _id: string,
   title: string,
   body: string
 }
+
+export const dummyDoc: document = { _id: "", title: "", body: "" }
 
 const docsModel = {
   baseUrl: window.location.href.includes("localhost") ||
@@ -13,19 +17,51 @@ const docsModel = {
 
   getDocs: async () => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const res = await (await fetch(`${docsModel.baseUrl}/docs`)).json()
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      if (res.length === 0) {
+        return [dummyDoc]
+      }
+
       return res
     } catch (e) {
       console.log(e)
       console.log("Something went wrong when fetching docs")
-      return [{ _id: "", title: "", body: "" }]
+      return [dummyDoc]
     }
   },
 
-  saveDocument: async (currentDocument: document): Promise<string> => {
+  filterDocs: (id: string, docs: document[], editor: any): document => {
+    const currentDoc = docs.filter(doc => doc._id === id)[0] ?? dummyDoc
+
+    try {
+      editor.focus()
+      editor.setContent(currentDoc.body)
+    } catch (e) {
+      console.log("Editor not initialized")
+    }
+
+    return currentDoc
+  },
+
+  getEdits: async (id: string, current: document): Promise<document> => {
+    try {
+      const res = await (await fetch(`${docsModel.baseUrl}/docs/${id}`)).json()
+
+      if (res.data) {
+        return res.data
+      }
+      return current
+    } catch (e) {
+      return current
+    }
+  },
+
+  saveDocument: async (currentDocument: document, warning: SnackbarComponentDev): Promise<string> => {
+    if (!currentDocument.title) {
+      warning.open()
+      return currentDocument._id
+    }
     if (currentDocument._id) {
       return await docsModel.updateDocument(currentDocument)
     }
